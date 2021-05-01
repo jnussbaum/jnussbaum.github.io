@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            background-color: darkred;
+            text-align: center;
+            font-family: 'Edwardian Script ITC';
+        }
+        p {
+            display: inline;
+            font-size: 80px;
+            margin-top: 0px;
+        }
+        p.smaller {
+            font-size: 60px;
+        }
+    </style>
+    </head>
+
+    <body>
+        <p class="smaller">Es geht noch<br><br></p>
+        <p id="days"></p><br>
+        <p id="hours"></p><br>
+        <p id="mins"></p>
+        <p class="smaller"><br><br>bis Johannes und Kerstin sich das Ja-Wort geben!</p>
+        <h2 id="end"></h2>
+        
+        <script>            
+            // The data/time we want to countdown to
+            var countDownDate = new Date("Aug 28, 2021 11:00:00").getTime();
+
+            function displayCountDown() {
+                var now = new Date().getTime();
+                var timeleft = countDownDate - now;
+                    
+                // Calculating the days, hours, minutes and seconds left
+                var days = Math.floor(timeleft / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
+                    
+                // Result is output to the specific element
+                document.getElementById("days").innerHTML = days + " Tage"
+                document.getElementById("hours").innerHTML = hours + " Stunden" 
+                document.getElementById("mins").innerHTML = minutes + " Minuten" 
+                    
+                // Display the message when countdown is over
+                if (timeleft < 0) {
+                    clearInterval(myfunc);
+                    document.getElementByClassName("smaller").innerHTML = ""
+                    document.getElementById("days").innerHTML = ""
+                    document.getElementById("hours").innerHTML = "" 
+                    document.getElementById("mins").innerHTML = ""
+                    document.getElementById("secs").innerHTML = ""
+                    document.getElementById("end").innerHTML = "Der grosse Moment ist da! Johannes und Kerstin geben sich das Ja-Wort!";
+                }
+            }
+
+            displayCountDown()
+
+            // Run myfunc every minute
+            var myfunc = setInterval(displayCountDown, 60000);
+        </script>
+    </body>
+</html>
